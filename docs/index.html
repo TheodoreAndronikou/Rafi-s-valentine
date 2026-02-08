@@ -7,234 +7,323 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>Will you be my Valentine?💕</title>
 
-<style>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-    html { -webkit-text-size-adjust: 100%; }
-    :root{
-        --primary-pink:#ff69b4;
-        --secondary-pink:#ffb6c1;
-        --dark-pink:#ff1493;
-        --bg-gradient: linear-gradient(180deg,#fff0f7 0%,#ffd6eb 100%);
-        --safe-area-top: env(safe-area-inset-top, 0px);
-        --safe-area-bottom: env(safe-area-inset-bottom, 0px);
-    }
+        :root{
+            --primary-pink:#ff69b4;
+            --secondary-pink:#ffb6c1;
+            --dark-pink:#ff1493;
+            --bg-gradient: linear-gradient(135deg,#ffeef8 0%,#ffe0f0 100%);
+            --safe-area-top: env(safe-area-inset-top, 0px);
+            --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+        }
 
-    body{
-        font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;
-        background:var(--bg-gradient);
-        min-height: 100svh;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        padding: calc(18px + var(--safe-area-top)) 14px calc(20px + var(--safe-area-bottom)) 14px;
-        overflow-x:hidden;
-        position:relative;
-        font-size: 18px;
-    }
+        body{
+            font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;
+            background:var(--bg-gradient);
+            min-height:100vh;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content:center;
+            padding: calc(26px + var(--safe-area-top)) 18px calc(26px + var(--safe-area-bottom)) 18px;
+            overflow-x:hidden;
+            position:relative;
+        }
 
-    /* Floating hearts background */
-    .floating-hearts{
-        position:fixed; inset:0;
-        pointer-events:none;
-        z-index:0; overflow:hidden;
-    }
-    .heart-bg{
-        position:absolute;
-        font-size:22px;
-        opacity:0.16;
-        animation: float-up 15s infinite ease-in-out;
-    }
-    @keyframes float-up{
-        0%{ transform:translateY(100vh) rotate(0deg); opacity:0; }
-        10%{ opacity:0.16; }
-        90%{ opacity:0.16; }
-        100%{ transform:translateY(-120px) rotate(360deg); opacity:0; }
-    }
+        /* Floating hearts background */
+        .floating-hearts{
+            position:fixed; inset:0;
+            pointer-events:none;
+            z-index:0; overflow:hidden;
+        }
+        .heart-bg{
+            position:absolute;
+            font-size:20px;
+            opacity:0.15;
+            animation: float-up 15s infinite ease-in-out;
+        }
+        @keyframes float-up{
+            0%{ transform:translateY(100vh) rotate(0deg); opacity:0; }
+            10%{ opacity:0.15; }
+            90%{ opacity:0.15; }
+            100%{ transform:translateY(-100px) rotate(360deg); opacity:0; }
+        }
 
-    /* ✅ MOBILE-FIRST layout: full width */
-    .container{
-        width: 100%;
-        max-width: 520px;   /* αρκετά μεγάλο για μεγάλα κινητά */
-        text-align:center;
-        position:relative;
-        z-index:1;
-        animation: fadeIn 0.8s ease-out;
-    }
-    @keyframes fadeIn{ from{opacity:0; transform:translateY(18px);} to{opacity:1; transform:translateY(0);} }
+        /* Main container */
+        .container{
+            max-width: 560px;
+            width:100%;
+            text-align:center;
+            position:relative;
+            z-index:1;
+            animation: fadeIn 0.8s ease-out;
+        }
+        @keyframes fadeIn{ from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);} }
 
-    h1{
-        font-size: clamp(44px, 9.2vw, 64px);  /* ΠΟΛΥ μεγαλύτερο */
-        line-height: 1.05;
-        color: var(--dark-pink);
-        margin-bottom: 14px;
-        text-shadow: 2px 2px 6px rgba(255,105,180,0.25);
-        animation: heartbeat 1.5s ease-in-out infinite;
-        padding: 0 6px;
-    }
-    @keyframes heartbeat{
-        0%,100%{transform:scale(1);}
-        10%,30%{transform:scale(1.045);}
-        20%,40%{transform:scale(1);}
-    }
+        h1{
+            font-size: clamp(34px, 8.5vw, 52px);
+            line-height: 1.1;
+            color: var(--dark-pink);
+            margin-bottom: 22px;
+            text-shadow: 2px 2px 4px rgba(255,105,180,0.2);
+            animation: heartbeat 1.5s ease-in-out infinite;
+            padding: 0 6px;
+        }
+        @keyframes heartbeat{
+            0%,100%{transform:scale(1);}
+            10%,30%{transform:scale(1.05);}
+            20%,40%{transform:scale(1);}
+        }
 
-    .photo-container{
-        width: 92vw;          /* ✅ γεμίζει το κινητό */
-        max-width: 520px;     /* αλλά δεν “σπάει” σε tablet */
-        margin: 0 auto 14px;
-        border-radius: 26px;
-        overflow:hidden;
-        box-shadow: 0 18px 55px rgba(255,105,180,0.32);
-    }
-    .photo-container img{
-        width:100%;
-        height:auto;
-        display:block;
-    }
+        .photo-container{
+            width:100%;
+            max-width: 420px;
+            margin: 0 auto 18px;
+            position:relative;
+            border-radius: 24px;
+            overflow:hidden;
+            box-shadow: 0 14px 46px rgba(255,105,180,0.32);
+            transition: transform 0.25s ease;
+        }
+        .photo-container img{
+            width:100%;
+            height:auto;
+            display:block;
+        }
+        .photo-container:active{
+            transform: scale(0.99);
+        }
 
-    .message{
-        font-size: clamp(22px, 5.4vw, 30px);  /* ✅ πιο έντονο */
-        color: var(--dark-pink);
-        margin: 10px 0 18px;
-        min-height: 46px;
-        font-weight: 800;
-        padding: 0 10px;
-    }
-    .message.shake{ animation: shake 0.5s ease; }
-    @keyframes shake{
-        0%,100%{transform:translateX(0);}
-        25%{transform:translateX(-10px);}
-        75%{transform:translateX(10px);}
-    }
+        .message{
+            font-size: clamp(18px, 4.8vw, 24px);
+            color: var(--dark-pink);
+            margin: 12px 0 26px;
+            min-height: 36px;
+            font-weight: 650;
+            letter-spacing: 0.2px;
+            padding: 0 10px;
+            transition: all 0.3s ease;
+        }
+        .message.shake{ animation: shake 0.5s ease; }
+        @keyframes shake{
+            0%,100%{transform:translateX(0);}
+            25%{transform:translateX(-10px);}
+            75%{transform:translateX(10px);}
+        }
 
-    /* ✅ Buttons: full-width stack */
-    .buttons-container{
-        display:flex;
-        flex-direction: column;
-        gap: 16px;
-        justify-content:center;
-        align-items:center;
-        position:relative;
-        min-height: 170px;  /* χώρο για το No όταν ξεφύγει */
-        margin-bottom: 10px;
-        width: 100%;
-    }
+        .buttons-container{
+            display:flex;
+            gap: 16px;
+            justify-content:center;
+            align-items:center;
+            flex-wrap:wrap;
+            position:relative;
+            min-height: 150px;
+            margin-bottom: 16px;
+            padding-bottom: 6px;
+        }
 
-    .btn{
-        width: 92vw;           /* ✅ full width feeling */
-        max-width: 520px;
-        font-size: clamp(26px, 6.2vw, 34px);
-        font-weight: 900;
-        padding: 20px 18px;
-        border:none;
-        border-radius: 999px;
-        cursor:pointer;
-        box-shadow: 0 16px 44px rgba(0,0,0,0.14);
-        min-height: 72px;      /* ✅ μεγάλο tap target */
-        touch-action: manipulation;
-        user-select:none;
-        letter-spacing: 0.3px;
-    }
+        .btn{
+            font-size: clamp(20px, 5.2vw, 28px);
+            font-weight: 800;
+            padding: 18px 44px;
+            border:none;
+            border-radius: 999px;
+            cursor:pointer;
+            transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+            box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+            min-width: 150px;
+            min-height: 58px; /* καλύτερο tap target */
+            touch-action: manipulation;
+            user-select:none;
+        }
 
-    .btn-yes{
-        background: linear-gradient(135deg, var(--primary-pink), var(--dark-pink));
-        color:white;
-        animation: pulse 2s ease-in-out infinite;
-        box-shadow: 0 18px 52px rgba(255,20,147,0.40);
-    }
-    @keyframes pulse{
-        0%,100%{ transform:scale(1); }
-        50%{ transform:scale(1.04); }
-    }
-    .btn-yes:active{ transform: scale(0.97); }
+        .btn-yes{
+            background: linear-gradient(135deg, var(--primary-pink), var(--dark-pink));
+            color:white;
+            animation: pulse 2s ease-in-out infinite;
+            position:relative;
+            overflow:visible;
+        }
+        @keyframes pulse{
+            0%,100%{ transform:scale(1); box-shadow:0 10px 28px rgba(255,20,147,0.28);}
+            50%{ transform:scale(1.05); box-shadow:0 14px 36px rgba(255,20,147,0.42);}
+        }
+        .btn-yes:active{ transform: scale(0.96); }
 
-    /* No button starts normal (stacked) */
-    .btn-no{
-        background:white;
-        color: var(--dark-pink);
-        border: 3px solid var(--secondary-pink);
-        position:relative; /* JS το κάνει absolute μετά το 1ο click */
-        transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease, left 0s, top 0s;
-    }
-    .btn-no:active{ transform: scale(0.97); }
+        /* IMPORTANT: start as relative, go absolute after first No click (JS) */
+        .btn-no{
+            background:white;
+            color: var(--dark-pink);
+            border: 3px solid var(--secondary-pink);
+            position:relative;
+            transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease, left 0s, top 0s;
+            box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+        }
+        .btn-no:active{ transform: scale(0.96); }
 
-    /* Sparkle */
-    .sparkle{
-        position:fixed;
-        pointer-events:none;
-        font-size:24px;
-        z-index:1000;
-        animation: sparkle-float 1s ease-out forwards;
-    }
-    @keyframes sparkle-float{
-        0%{ opacity:1; transform: translateY(0) scale(0); }
-        50%{ transform: translateY(-32px) scale(1); }
-        100%{ opacity:0; transform: translateY(-64px) scale(0.5); }
-    }
+        .sparkle{
+            position:fixed;
+            pointer-events:none;
+            font-size:22px;
+            z-index:1000;
+            animation: sparkle-float 1s ease-out forwards;
+        }
+        @keyframes sparkle-float{
+            0%{ opacity:1; transform: translateY(0) scale(0); }
+            50%{ transform: translateY(-30px) scale(1); }
+            100%{ opacity:0; transform: translateY(-60px) scale(0.5); }
+        }
 
-    /* Audio button: bigger + obvious */
-    .audio-controls{
-        position: fixed;
-        top: calc(12px + var(--safe-area-top));
-        right: 12px;
-        z-index: 100;
-    }
-    .audio-btn{
-        background: white;
-        border: 3px solid var(--secondary-pink);
-        border-radius: 999px;
-        width: 84px;
-        height: 84px;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        font-size: 38px;
-        box-shadow: 0 18px 40px rgba(0,0,0,0.18);
-    }
-    .audio-btn.is-on{
-        border-color: var(--dark-pink);
-        box-shadow: 0 18px 42px rgba(255,20,147,0.25);
-    }
+        .audio-controls{
+            position: fixed;
+            top: calc(14px + var(--safe-area-top));
+            right: 14px;
+            z-index: 100;
+        }
 
-    /* Celebration */
-    .celebration-overlay{
-        position:fixed; inset:0;
-        background: rgba(255,255,255,0.95);
-        display:none;
-        flex-direction:column;
-        align-items:center;
-        justify-content:center;
-        z-index:1000;
-        padding: 18px;
-    }
-    .celebration-overlay.active{ display:flex; }
-    .celebration-message{
-        font-size: clamp(48px, 10vw, 72px);
-        color: var(--dark-pink);
-        margin-bottom: 14px;
-        text-align:center;
-        font-weight: 900;
-    }
+        .audio-btn{
+            background: white;
+            border: 3px solid var(--secondary-pink);
+            border-radius: 999px;
+            width: 78px;
+            height: 78px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 34px;
+            box-shadow: 0 14px 32px rgba(0,0,0,0.18);
+            transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+            touch-action: manipulation;
+        }
 
-    /* Confetti canvas */
-    #confettiCanvas{
-        position:fixed; inset:0;
-        width:100%;
-        height:100%;
-        pointer-events:none;
-        z-index:999;
-    }
+        .audio-btn:active{ transform: scale(0.94); }
 
-    /* Optional: make it nicer on tablets/desktop */
-    @media (min-width: 900px){
-        body{ padding-left: 24px; padding-right: 24px; }
-        .buttons-container{ flex-direction: row; min-height: 150px; }
-        .btn{ width: auto; min-width: 220px; }
-        .photo-container{ width: 520px; }
-    }
+        .audio-btn.is-on{
+            box-shadow: 0 16px 36px rgba(255,20,147,0.26);
+            border-color: var(--dark-pink);
+        }
 
+        /* μικρό “badge” για να καταλαβαίνει τι να κάνει */
+        .audio-hint{
+            position: fixed;
+            top: calc(98px + var(--safe-area-top));
+            right: 14px;
+            z-index: 100;
+            background: rgba(255,255,255,0.9);
+            border: 2px solid var(--secondary-pink);
+            color: var(--dark-pink);
+            padding: 10px 12px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 14px;
+            box-shadow: 0 10px 22px rgba(0,0,0,0.12);
+            max-width: 180px;
+        }
+        .audio-hint.hidden{ display:none; }
 
-</style>
+        .celebration-overlay{
+            position:fixed; inset:0;
+            background: rgba(255,255,255,0.95);
+            display:none;
+            flex-direction:column;
+            align-items:center;
+            justify-content:center;
+            z-index:1000;
+            animation: fadeIn 0.5s ease;
+            padding: 20px;
+        }
+        .celebration-overlay.active{ display:flex; }
+        .celebration-message{
+            font-size: clamp(34px, 9vw, 62px);
+            color: var(--dark-pink);
+            margin-bottom: 18px;
+            animation: bounceIn 0.8s ease;
+            text-align:center;
+            padding: 0 10px;
+        }
+        @keyframes bounceIn{
+            0%{ transform:scale(0); opacity:0;}
+            50%{ transform:scale(1.2);}
+            100%{ transform:scale(1); opacity:1;}
+        }
+
+        #confettiCanvas{
+            position:fixed; inset:0;
+            width:100%;
+            height:100%;
+            pointer-events:none;
+            z-index:999;
+        }
+
+        /* ============================= */
+        /* MOBILE FIRST BOOST (IMPORTANT) */
+        /* ============================= */
+
+        @media (max-width: 600px){
+
+            body{
+                padding: calc(18px + var(--safe-area-top)) 14px
+                calc(22px + var(--safe-area-bottom)) 14px;
+            }
+
+            .container{
+                max-width: 100%;
+            }
+
+            h1{
+                font-size: 42px;
+                margin-bottom: 18px;
+            }
+
+            .photo-container{
+                max-width: 100%;
+                border-radius: 26px;
+                margin-bottom: 18px;
+            }
+
+            .message{
+                font-size: 22px;
+                margin-bottom: 22px;
+                min-height: 44px;
+            }
+
+            .buttons-container{
+                flex-direction: column;
+                gap: 18px;
+                min-height: auto;
+            }
+
+            .btn{
+                width: 100%;
+                max-width: 360px;
+                font-size: 26px;
+                padding: 20px 0;
+                min-height: 68px;
+            }
+
+            .btn-no{
+                position: relative !important;
+                left: auto !important;
+                top: auto !important;
+                transform: none !important;
+            }
+
+            .audio-btn{
+                width: 82px;
+                height: 82px;
+                font-size: 38px;
+            }
+
+            .celebration-message{
+                font-size: 52px;
+            }
+        }
+
+    </style>
 </head>
 
 <body>
